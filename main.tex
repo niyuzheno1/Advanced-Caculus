@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{More Calculus Haha}
+\author{waluigi120 }
+\date{April 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{Double Exponential}
+
+\subsection{Definition}
+$$y = \frac{1}{2\sigma} e^{-\frac{|x-\mu|}{\sigma}}$$
+
+\subsection{Moment Generating Function}
+\begin{align*}\label{eq:pareto mle2}
+ Mgf(t) =\int_{-\infty}^{+\infty} e^{tx} \frac{1}{2\sigma} e^{-\frac{|x-\mu|}{\sigma}} dx\\ =\int_{-\infty}^{+\infty} \frac{1}{2\sigma} e^{tx-\frac{|x-\mu|}{\sigma}}dx \\ = \int_{-\infty}^{\mu} \frac{1}{2\sigma} e^{tx-\frac{\mu - x}{\sigma}} dx \\+ \int_{\mu}^{\infty} \frac{1}{2\sigma} e^{tx-\frac{x-\mu}{\sigma}} dx \\ = \int_{-\infty}^{\mu} \frac{1}{2\sigma} e^{tx-\frac{\mu - x}{\sigma}}dx \\+ \int_{\mu}^{\infty} \frac{1}{2\sigma} e^{tx-\frac{x-\mu}{\sigma}}dx\\ = \int_{-\infty}^{\mu} \frac{1}{2\sigma} e^{\frac{\sigma tx -\mu + x}{\sigma}}dx \\+ \int_{\mu}^{\infty} \frac{1}{2\sigma} e^{\frac{\sigma tx-x+\mu}{\sigma}}dx \\ = \frac{1}{2 \sigma}( \int_{-\infty}^{\mu}  e^{\frac{\sigma tx -\mu + x}{\sigma}}dx +  \int_{\mu}^{\infty}  e^{\frac{\sigma tx-x+\mu}{\sigma}}dx )\\ = \frac{1}{ 2\sigma} ( e^{-\frac{\mu}{\sigma}} \int_{-\infty}^{\mu} e^{\frac{(\sigma t + 1) x}{\sigma}} dx +  e^{\frac{\mu}{\sigma}} \int_{\mu}^{\infty}  e^{\frac{\sigma tx-x}{\sigma}}dx )) \\ =  \frac{1}{2 \sigma} (e^{-\frac{\mu}{\sigma}} \frac{\sigma}{\sigma t + 1} e^{\frac{(\sigma t + 1) x}{\sigma}} |_{x = -\infty}^{\mu}+e^{\frac{\mu}{\sigma}} \frac{\sigma}{\sigma t - 1} e^{\frac{(\sigma t - 1) x}{\sigma}} |_{x = \mu}^{\infty} ) \\ = \frac{1}{2\sigma} (e^{-\frac{\mu}{\sigma}} \frac{\sigma}{\sigma t + 1} e^{\frac{(\sigma t + 1) \mu}{\sigma}} - e^{\frac{\mu}{\sigma}} \frac{\sigma}{\sigma t - 1} e^{\frac{(\sigma t - 1) \mu}{\sigma}} )\end{align*}
+\begin{align*}
+ = \frac{1}{2\sigma} ( \frac{\sigma}{\sigma t + 1} e^{\frac{(\sigma t ) \mu}{\sigma}} -  \frac{\sigma}{\sigma t - 1} e^{\frac{(\sigma t) \mu}{\sigma}} ) =   \frac{1}{1-(\sigma t)^{2} } e^{ t  \mu}
+\end{align*}
+
+\subsection{Means and Variance}
+
+Mean is $\mu$, which is easy to show.
+
+Variance ,easy to be proven by substitution and take derivative, is $2\sigma^2$
+
+\section{Fisher Distribution}
+
+\subsection{Moments}
+nth-Moment is defined by the following integral:
+
+$$\int_{0}^{\infty}x^n\frac{\Gamma(\frac{\nu_1+\nu_2}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_1}{\nu_2})^{\frac{\nu_1}{2}} \frac{x^{\frac{\nu_1-2}{2}}}{(1+(\frac{\nu_1}{\nu_2})x)^{\frac{\nu_1+\nu_2}{2}}}dx$$
+
+$$\frac{\Gamma(\frac{\nu_1+\nu_2}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_1}{\nu_2})^{\frac{\nu_1}{2}}\int_{0}^{\infty}x^{2n/2} \frac{x^{\frac{\nu_1-2}{2}}}{(1+(\frac{\nu_1}{\nu_2})x)^{\frac{\nu_1+\nu_2}{2}}}dx$$
+
+Focusing on the integral,
+
+$$\int_{0}^{\infty} \frac{x^{\frac{2n+\mu_1-2}{2}}}{(1+(\frac{\nu_1}{\nu_2})x)^{\frac{\nu_1+\nu_2}{2}}}dx$$
+
+
+$$\int_{0}^{\infty} \frac{x^{\frac{2n+\nu_1-2}{2}}}{(1+(\frac{\nu_1}{\nu_2})x)^{\frac{\nu_1+\nu_2}{2}}}dx$$
+
+Let $u = 1+(\frac{\nu_1}{\nu_2})x$ then $(u-1)(\frac{\nu_2}{\nu_1})= x$
+
+and $du(\frac{\nu_2}{\nu_1})= dx$, if $x =0,u=1$, if $x=\infty, u = \infty$
+
+$$\int_{1}^{\infty} \frac{((u-1)(\frac{\nu_2}{\nu_1}))^{\frac{2n+\nu_1-2}{2}}}{u^{\frac{\nu_1+\nu_2}{2}}}(\frac{\nu_2}{\nu_1})du$$
+
+$$(\frac{\nu_2}{\nu_1})^{\frac{2n+\nu_1}{2}} \int_{1}^{\infty} \frac{(u-1)^{\frac{2n+\nu_1-2}{2}}}{u^{\frac{\nu_1+\nu_2}{2}}}du$$
+
+
+$$(\frac{\nu_2}{\nu_1})^{\frac{2n+\nu_1}{2}} \int_{1}^{\infty} \frac{(u-1)^{\frac{2n+\nu_1-2}{2}}}{u^{\frac{\nu_1+\nu_2}{2}}}du$$
+ 
+Focusing on the integral, Let $v =u^{-1}$, $dv = -u^{-2} du = -v^2du$
+
+$du = -v^{-2} dv$
+
+$$\int_{0}^{1} \frac{(v^{-1}-1)^{\frac{2n+\nu_1-2}{2}}}{{v^{-1}}^{\frac{\nu_1+\nu_2}{2}}}v^{-2} dv$$
+
+$$\int_{0}^{1} (\frac{1-v}{v})^{\frac{2n+\nu_1-2}{2}}v^{-2} {{{v}^{\frac{\nu_1+\nu_2}{2}}}} dv$$
+
+$$\int_{0}^{1} ({1-v})^{\frac{2n+\nu_1-2}{2}}v^{\frac{-2n-\nu_1+2}{2}}v^{-2} {{{v}^{\frac{\nu_1+\nu_2}{2}}}} dv$$
+
+$$\int_{0}^{1} ({1-v})^{\frac{2n+\nu_1-2}{2}}v^{\frac{\nu_2-2n-2}{2}}{} dv$$
+
+Which as it turns out to be, 
+$${\bf B}(\frac{\nu_2-2n}{2},\frac{2n+\nu_1}{2})$$
+
+Plug in back,
+
+$$\frac{\Gamma(\frac{\nu_1+\nu_2}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_1}{\nu_2})^{\frac{\nu_1}{2}}(\frac{\nu_2}{\nu_1})^{\frac{2n+\nu_1}{2}} {\bf B}(\frac{\nu_2-2n}{2},\frac{2n+\nu_1}{2})$$
+
+Which will be,
+
+$$\frac{\Gamma(\frac{\nu_2-2n}{2})\Gamma(\frac{2n+\nu_1}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_2}{\nu_1})^{n} $$
+
+
+\end{document}
