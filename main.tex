@@ -78,5 +78,151 @@ Which will be,
 
 $$\frac{\Gamma(\frac{\nu_2-2n}{2})\Gamma(\frac{2n+\nu_1}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_2}{\nu_1})^{n} $$
 
+\section{T-distribution}
+
+\subsection{Moments}
+The moments by T-distribution is defined by,
+
+$$\int_{-\infty}^{\infty}\frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\sqrt{\nu \pi}} \frac{x^n}{(1+\frac{x^2}{\nu})^{\frac{\nu+1}{2}}}dx$$
+
+$$\frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\sqrt{\nu \pi}} \int_{-\infty}^{\infty} \frac{x^n}{(1+\frac{x^2}{\nu})^{\frac{\nu+1}{2}}}dx$$
+
+Focusing on the integral, 
+
+$$\int_{-\infty}^{\infty} \frac{x^n}{(1+\frac{x^2}{\nu})^{\frac{\nu+1}{2}}}dx$$
+
+Can be rewritten as,
+
+$$2 \int_{0}^{\infty} x^n {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} dx$$
+
+If n is odd, the function is an odd function so the value should be zero,
+
+If n is even,
+
+Let $u = 1+\frac{x^2}{\nu}$, so $x = \sqrt{(u-1) \nu}$, $dx = \frac{1}{2}\nu \frac{1}{\sqrt{(u-1) \nu}}du$
+
+$$ \int_{1}^{\infty} ( \sqrt{(u-1) \nu})^n {u^{\frac{-\nu-1}{2}}} \nu{(\sqrt{(u-1) \nu})}^{-1}du$$
+
+$$ \nu \int_{1}^{\infty} ( \sqrt{(u-1) \nu})^{n-1} {u^{\frac{-\nu-1}{2}}}  du$$
+
+$$  \nu^{\frac{n+1}{2}} \int_{1}^{\infty} {(u-1)}^{\frac{n-1}{2}} {u^{\frac{-\nu-1}{2}}}  du$$
+
+Focusing on the integral,
+
+Let $u = w^{-1}$, then $du = -w^{-2} dw$
+
+$$\int_{0}^{1} {(w^{-1}-1)}^{\frac{n-1}{2}} {(w^{-1})^{\frac{-\nu-1}{2}}}  w^{-2} dw$$
+
+$$\int_{0}^{1} {(w^{-1}(1-w))}^{\frac{n-1}{2}} {w^{\frac{\nu-3}{2}}}   dw$$
+
+$$\int_{0}^{1} {w^{\frac{1-n}{2}} (1-w)}^{\frac{n-1}{2}} {w^{\frac{\nu-3}{2}}}   dw$$
+
+$$\int_{0}^{1} { (1-w)}^{\frac{n-1}{2}} {w^{\frac{\nu-2-n}{2}}}   dw$$
+
+Which as it turns out to be, 
+$${\bf B}(\frac{\nu-n}{2},\frac{n+1}{2})$$
+
+We can untar it by our fantastically mathematics talent, 
+
+$$ \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\sqrt{\nu \pi}} \nu^{\frac{n+1}{2}} {\bf B}(\frac{\nu-n}{2},\frac{n+1}{2})$$
+
+
+$$ \frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\sqrt{\nu \pi}} \nu^{\frac{n+1}{2}} \frac{\Gamma(\frac{\nu-n}{2})\Gamma(\frac{n+1}{2})}{\Gamma{(\frac{\nu+1}{2}})}$$
+
+Overall,
+$$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{n}{2}} \frac{\Gamma(\frac{\nu-n}{2})\Gamma(\frac{n+1}{2})}{\Gamma(\frac{\nu}{2})}$$
+
+\subsection{Examples}
+
+1. The Student's t-distribution with  degrees of freedom can be defined as the distribution of the random variable T,
+$$T = \frac{Z}{(\frac{V}{\nu})^{1/2}}$$
+where
+
+Z  is a standard normal random variable;
+V  has a chi-squared distribution with $\nu$ degrees of freedom;
+Z and V are independent.
+Show that if T has Student (t-distribution) distribution with n degrees of freedom, then $\sigma{(T)} = \frac{n}{n-2}$ for $n>2$.
+
+Prove:
+Using the fact given above, plug in $n = 2$, 
+$$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{2}{2}} \frac{\Gamma(\frac{\nu-2}{2})\Gamma(\frac{3}{2})}{\Gamma(\frac{\nu}{2})}$$
+By common sense, 
+$$\Gamma(\frac{3}{2}) = \frac{1}{2} \Gamma(\frac{1}{2})$$
+
+$$\Gamma(\frac{\nu}{2}) = \frac{\nu-2}{2} \Gamma(\frac{\nu-2}{2})$$
+
+So $$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{2}{2}} \frac{\Gamma(\frac{\nu-2}{2})\Gamma(\frac{3}{2})}{\Gamma(\frac{\nu}{2})} = \frac{1}{\sqrt{ \pi}} \nu\frac{\frac{1}{2}\sqrt{\pi}}{\frac{\nu-2}{2}} =\frac\nu{\nu-2}  $$
+
+2. Recall that the skewness of X is the third moment of its standard score and its kurtosis is the fourth moment of the standard score. Find these characteristics for X having Gamma distribution, Chi-square distribution, Student distribution.
+
+For Gamma Distribution, consider 
+
+$$MGF(t) = \frac{1}{(1-\beta t) ^ \alpha }$$
+
+Then 
+$$MGF(t) = {(1-\beta t) ^ {-\alpha} }$$
+$$MGF'(t) = \beta \alpha {(1-\beta t) ^ {-\alpha-1} }$$
+$$MGF''(t) = \beta^2 \alpha ({\alpha+1}){(1-\beta t) ^ {-\alpha-2} }$$
+$$MGF^{3}(t) = \beta^3 \alpha ({\alpha+1})({\alpha+2}){(1-\beta t) ^ {-\alpha-3} }$$
+$$MGF^{4}(t) = \beta^4 \alpha ({\alpha+1})({\alpha+2})({\alpha+3}){(1-\beta t) ^ {-\alpha-4} }$$
+
+$$MGF^{3}(0) = \beta^3 \alpha ({\alpha+1})({\alpha+2}) $$
+
+$$MGF^{4}(0) =  \beta^4 \alpha ({\alpha+1})({\alpha+2})({\alpha+3}) $$
+
+For the $\chi^2$ distribution,
+
+$$MGF^{3}(0) = 2^3 \frac{p}{2} ({\frac{p}{2}+1})({\frac{p}{2}+2}) = p(p+2)(p+4) $$
+$$MGF^{4}(0) = p(p+2)(p+4)(p+6) $$
+
+For Student distribution, plug n = 4
+
+$$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{4}{2}} \frac{\Gamma(\frac{\nu-4}{2})\Gamma(\frac{4+1}{2})}{\Gamma(\frac{\nu}{2})}$$
+
+$$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{4}{2}} \frac{\Gamma(\frac{\nu-4}{2})\Gamma(\frac{4+1}{2})}{\Gamma(\frac{\nu}{2})}$$
+
+More common sense, 
+$$\Gamma(\frac{\nu}{2}) = \frac{\nu-2}{2} \Gamma(\frac{\nu-2}{2}) =  \frac{\nu-2}{2} \frac{\nu-4}{2} \Gamma(\frac{\nu-4}{2}) $$
+
+$$\Gamma(\frac{4+1}{2}) = \frac{3}{2}\Gamma(\frac{2+1}{2}) = \frac{3}{2} \frac{1}{2}\Gamma(\frac{1}{2}) = \frac{3}{2} \frac{1}{2} \sqrt{\pi}$$
+
+So, 
+$$  \frac{1}{\sqrt{ \pi}} \nu^{\frac{4}{2}} \frac{\Gamma(\frac{\nu-4}{2})\Gamma(\frac{4+1}{2})}{\Gamma(\frac{\nu}{2})} =\nu^{2} \frac{ 3 }{{(\nu-2)} {(\nu-4)}} $$
+
+
+3. Find the limiting distribution of the Student distribution as the number of degrees of freedom approaches $\infty$.
+
+
+$$\frac{\Gamma(\frac{\nu+1}{2})}{\Gamma(\frac{\nu}{2})} \frac{1}{\sqrt{\nu \pi}} \frac{1}{(1+\frac{x^2}{\nu})^{\frac{\nu+1}{2}}}$$
+
+As $\nu$ tends to $\infty$, we can use stirling approximation 
+
+$$\Gamma(x) = \sqrt{\frac{2\pi}{x}}(\frac{x}{e})^{x}$$
+
+$$\frac{\sqrt{\frac{2\pi}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{e})^{\frac{\nu+1}{2}}}{\sqrt{\frac{2\pi}{\frac{\nu}{2}}}(\frac{\frac{\nu}{2}}{e})^{\frac{\nu}{2}}} \frac{1}{\sqrt{\nu \pi}} {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} $$
+
+$$=\frac{\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{e})^{\frac{\nu+1}{2}}}{(\frac{\frac{\nu}{2}}{e})^{\frac{\nu}{2}}} \frac{1}{\sqrt{\nu \pi}} {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} $$
+
+$$=\frac{\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{e})^{\frac{\nu}{2}} (\frac{\frac{\nu+1}{2}}{e})^{\frac{1}{2}} }{(\frac{\frac{\nu}{2}}{e})^{\frac{\nu}{2}}} \frac{1}{\sqrt{\nu \pi}} {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} $$
+
+$$={\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{\frac{\nu}{2}})^{\frac{\nu}{2}} (\frac{\frac{\nu+1}{2}}{e})^{\frac{1}{2}} } \frac{1}{\sqrt{\nu \pi}} {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} $$
+
+$$={\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{\frac{\nu}{2}})^{\frac{\nu}{2}} (\frac{\frac{\nu+1}{2}}{\nu e})^{\frac{1}{2}} } {{ \pi}}^{-1/2} {(1+\frac{x^2}{\nu})^{\frac{-\nu-1}{2}}} $$
+$$={\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{\frac{\nu}{2}})^{\frac{\nu}{2}} (\frac{\frac{\nu+1}{2}}{\nu e})^{\frac{1}{2}} } {{ \pi}}^{-1/2} {(1+\frac{x^2}{\nu})^{\frac{-\nu}{2}}} {(1+\frac{x^2}{\nu})^{\frac{-1}{2}}} $$
+
+As, $\nu$ tends to infinity, $\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}} = 1$, $(\frac{\frac{\nu+1}{2}}{\frac{\nu}{2}})^{\frac{\nu}{2}} = (\frac{{\nu+1}}{{\nu}})^{\frac{\nu}{2}}=(1+\frac{1}{\nu})^{\nu/2} = e^{1/2}$
+
+$(\frac{\frac{\nu+1}{2}}{\nu e})^{\frac{1}{2}} = 2^{-1/2} e^{-1/2}$, ${(1+\frac{x^2}{\nu})^{\frac{-\nu}{2}}} = e^{-x^2/2}$,${(1+\frac{x^2}{\nu})^{\frac{-1}{2}}}  = 1$
+
+
+So 
+
+$${\sqrt{\frac{{\frac{\nu}{2}}}{\frac{\nu+1}{2}}}(\frac{\frac{\nu+1}{2}}{\frac{\nu}{2}})^{\frac{\nu}{2}} (\frac{\frac{\nu+1}{2}}{\nu e})^{\frac{1}{2}} } {{ \pi}}^{-1/2} {(1+\frac{x^2}{\nu})^{\frac{-\nu}{2}}} {(1+\frac{x^2}{\nu})^{\frac{-1}{2}}} = $$
+
+$$1\times e^{1/2} \times2^{-1/2} e^{-1/2} \times {{ \pi}}^{-1/2} \times  e^{-x^2/2} \times 1=$$
+
+$$\frac{e^{x^2/2}}{\sqrt{2\pi}}$$
+
+So it approximates to the standard normal distribution as the degree of freedom goes to infinity
 
 \end{document}
