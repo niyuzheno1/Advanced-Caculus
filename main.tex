@@ -28,7 +28,106 @@ Mean is $\mu$, which is easy to show.
 
 Variance ,easy to be proven by substitution and take derivative, is $2\sigma^2$
 
+\section{Chi-sqruare Distribution}
+
+\subsection{Moments}
+
+Consider the following integration 
+$$EX^n = \int_{0}^{\infty} x^n \frac{1}{\Gamma(\frac{p}2)2^{\frac{p}2}} x ^{\frac{p}2-1}e^{-\frac{x}2}dx$$
+
+$$ = \frac{1}{\Gamma(\frac{p}2)2^{\frac{p}2}} \int_{0}^{\infty} x^n  x ^{\frac{p}2-1}e^{-\frac{x}2}dx$$
+
+$$= \frac{1}{\Gamma(\frac{p}2)2^{\frac{p}2}} \int_{0}^{\infty}  x ^{n+\frac{p}2-1}e^{-\frac{x}2}dx$$
+
+Let $u = \frac{x}{2}$ then $2du = dx$
+$$= \frac{1}{\Gamma(\frac{p}2)2^{\frac{p}2}} \int_{0}^{\infty}  (2u)^{n+\frac{p}2-1}e^{-u}2du$$
+
+$$= \frac{1}{\Gamma(\frac{p}2)} 2^{-\frac{p}2} 2^{n+\frac{p}2-1} \int_{0}^{\infty}  (u)^{n+\frac{p}2-1}e^{-u}2du$$
+ 
+$$= \frac{1}{\Gamma(\frac{p}2)}  2^{n} \int_{0}^{\infty}  (u)^{n+\frac{p}2-1}e^{-u}du$$
+
+$$EX^n= \frac{2^{n} \Gamma(n+\frac{p}2)}{\Gamma(\frac{p}2)}   $$
+
+\subsection{Examples}
+
+1. The Student's t-distribution with  degrees of freedom can be defined as the distribution of the random variable T,
+$$T = \frac{Z}{(\frac{V}{\nu})^{1/2}}$$
+where
+
+Z  is a standard normal random variable;
+V  has a chi-squared distribution with $\nu$ degrees of freedom;
+Z and V are independent.
+Show that if T has Student (t-distribution) distribution with n degrees of freedom, then $\sigma{(T)} = \frac{n}{n-2}$ for $n>2$.
+
+Prove:
+$$E T = E(\frac{Z}{(\frac{V}{\nu})^{1/2}})$$
+
+Since V, Z are independent,
+$$E T = {EZ} \times E(\frac{1}{(\frac{V}{\nu})^{1/2}})$$
+
+Since $EZ = 0$, $ET = 0$
+
+$$E T^2 = E(\frac{Z^2}{(\frac{V}{\nu})})$$
+
+Since V, Z are independent,
+$$E T^2 = ({E(Z^2)}\nu E({V}^{-1}))$$
+
+Since $EZ^2 = 1$, $EV^{-1} = \frac{2^{-1}}{(-1+\frac{\nu}2)} = \frac{1}{\nu-2} $,
+
+So $$E T^2 = \frac{\nu}{\nu-2}$$
+
+2. Recall that the skewness of X is the third moment of its standard score and its kurtosis is the fourth moment of the standard score. Find these characteristics for X having Gamma distribution, Chi-square distribution, Student distribution.
+
+For Student Distribution, Consider, 
+$$E (\frac{T-\mu}{\sigma})^4 = E (\frac{T}{\sigma})^4 = (\frac{ET^4}{\sigma^4}) = E(Z^4) E(V^{-2}) \frac{\nu^{2}}{\sigma^4}$$
+
+$$E(Z^4) E(V^{-2}) \frac{\nu^{2}}{\sigma^4} = E((\chi^2)^2) E(V^{-2}) \frac{\nu^{2}}{\sigma^4}$$
+
+Since $$E((\chi^2)^2) = \frac{2^{2} \Gamma(2+\frac{1}2)}{\Gamma(\frac{1}2)} = 3 $$
+
+Since $$E((V)^{-2}) = \frac{2^{-2} \Gamma(-2+\frac{\nu}2)}{\Gamma(\frac{\nu}2)} = \frac{1}{4 {(-1+\frac{\nu}2)}{(-2+\frac{\nu}2)}} =\frac{1}{(\nu-2)(\nu-4)}$$
+$$\sigma^4 = (\frac{\nu}{\nu-2})^2$$
+
+So the kurtosis for the distribution is $\frac{6}{n-4}+3$
+
+
 \section{Fisher Distribution}
+
+\subsection{Property Related to the Chi-square Distribtuion}
+
+$F_{(a,b)} = \frac{\chi^2(a) b}{\chi^2(b) a}$
+
+Let $x$ --$\chi^2(a)$, $y$ -- $\chi^2(b)$
+
+The probability the variable happen is 
+
+$$\frac{1}{\Gamma(\frac{a}2)2^{\frac{a}2}} x ^{\frac{a}2-1}e^{-\frac{x}2} \frac{1}{\Gamma(\frac{b}2)2^{\frac{b}2}} x ^{\frac{b}2-1}e^{-\frac{y}2}$$
+
+Let $z = \frac{xb}{ya}$, then $x = \frac{a}{b} yz$, $dx = \frac{a}{b} ydz$
+
+$$\frac{1}{\Gamma(\frac{a}2)2^{\frac{a}2}} \frac{1}{\Gamma(\frac{b}2)2^{\frac{b}2}} x ^{\frac{a}2-1} y^{\frac{b}2-1}e^{-\frac{x}2-\frac{y}{2}} $$
+
+For the variables, consider the integration with respect to y,
+$$\int_{0}^{\infty}{(\frac{a}{b} yz)^{\frac{a}2-1} y^{\frac{b}2-1}e^{-\frac{ayz}{2b}-\frac{y}{2}} \frac{a}{b}ydy}$$
+
+$$(\frac{a}{b} z)^{\frac{a}2} z^{-1} \int_{0}^{\infty}{( y)^{\frac{a}2+\frac{b}2-1}e^{-\frac{1}{2}{(\frac{az}{b}+1)}y} dy}$$
+
+Consider the integral, 
+
+Let $u = \frac{1}{2}{(\frac{az}{b}+1)}y$, $y = 2(\frac{az}{b}+1)^{-1}u $
+
+$dy = 2(\frac{az}{b}+1)^{-1}du$
+
+$$\int_{0}^{\infty}{(2(\frac{az}{b}+1)^{-1}u)^{\frac{a}2+\frac{b}2-1}e^{-u} 2(\frac{az}{b}+1)^{-1}du}$$
+
+$$(\frac{2}{\frac{az}{b}+1})^{\frac{a}2+\frac{b}2}\int_{0}^{\infty}{(u)^{\frac{a}2+\frac{b}2-1}e^{-u} du}$$
+
+$$(\frac{2}{\frac{az}{b}+1})^{\frac{a}2+\frac{b}2}\Gamma(\frac{a}2+\frac{b}2)$$
+
+Plunge back,
+
+$$\frac{1}{\Gamma(\frac{a}2)2^{\frac{a}2}} \frac{1}{\Gamma(\frac{b}2)2^{\frac{b}2}} (\frac{a}{b} z)^{\frac{a}2} z^{-1}(\frac{2}{\frac{az}{b}+1})^{\frac{a}2+\frac{b}2}\Gamma(\frac{a}2+\frac{b}2)$$
+
 
 \subsection{Moments}
 nth-Moment is defined by the following integral:
@@ -77,6 +176,9 @@ $$\frac{\Gamma(\frac{\nu_1+\nu_2}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2
 Which will be,
 
 $$\frac{\Gamma(\frac{\nu_2-2n}{2})\Gamma(\frac{2n+\nu_1}{2})}{\Gamma(\frac{\nu_1}{2})\Gamma(\frac{\nu_2}{2})} (\frac{\nu_2}{\nu_1})^{n} $$
+
+\subsection{Examples}
+
 
 \section{T-distribution}
 
@@ -224,5 +326,32 @@ $$1\times e^{1/2} \times2^{-1/2} e^{-1/2} \times {{ \pi}}^{-1/2} \times  e^{-x^2
 $$\frac{e^{x^2/2}}{\sqrt{2\pi}}$$
 
 So it approximates to the standard normal distribution as the degree of freedom goes to infinity
+
+\section{Random Distribtuion}
+
+\subsection{Examples}
+
+1. Suppose that X and Y are independent random variables, each with the exponential distribution with rate parameter r. Find the distribution of X/Y.
+
+The probability is 
+$$\frac{1}{r} e^{-\frac{x}{r}} \frac{1}{r} e^{-\frac{y}{r}} $$
+
+$$\frac{1}{r^2} e^{-\frac{(x+y)}{r}}   $$
+
+Let $z = \frac{x}{y}$,  $dz = \frac{dx}{y}$,$ydz = dx$, $\frac{dx}{dz} = y$
+
+$$\frac{1}{r^2} e^{-\frac{(x+y)}{r}}  dx =  \frac{1}{r^2} e^{-\frac{(z+1)y}{r}}  ydz $$
+
+$$\int_{0}^{\infty}\frac{1}{r^2} e^{-\frac{(z+1)y}{r}}  y dy $$ 
+Let $-u = -\frac{(z+1)y}{r}$, $-du = -\frac{(z+1)dy}{r}$, $dy = \frac{rdu}{(z+1)}$, $y = \frac{ru}{(z+1)} $
+
+So 
+
+$$\int_{0}^{\infty}\frac{1}{r^2} e^{-u}  \frac{ru}{(z+1)} \frac{rdu}{(z+1)}$$ 
+
+$$\int_{0}^{\infty} e^{-u}  \frac{u}{(z+1)^2} du $$
+
+$$pdf(z)=\frac{1}{(z+1)^2}$$
+
 
 \end{document}
